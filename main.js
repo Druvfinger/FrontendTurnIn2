@@ -14,11 +14,39 @@ fetch ('https://fakestoreapi.com/products') // hämtar returnerar  respons
             <div class="card-body">
             <h3 class="card-title">${product.title}</h3>
             <p class="card-text text-secondary ">${product.category}</p>
-            <p class="card-text">${description.length > 20 ? description.substring(0, 20).concat('..more') : description}</p>
+            <p class="card-text">${description.length > 20 ? description.substring(0, 20).concat(
+               `<a href = "#" data-bs-toggle="modal" data-bs-target="#${product.id}">...more</a>`) : description}</p>
             <div class="row">
                 <div class="col">
                     <h4 class="card-text d-md-inline-block">${product.price}kr</h4>
-                    <a href="#" class="btn btn-primary d-md-inline-block ms-md-3">Buy</a>
+                    <a href="#" class="btn btn-secondary d-md-inline-block ms-md-3" data-bs-toggle="modal" data-bs-target="#${product.id}">Buy</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="${product.id}">
+        <div class="modal-dialog" >
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title style="max-width: 400px;"" id="${product.id}">${product.title}</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body d-flex" style="max-width: 500px;">
+                    <div class="row">
+                        <div class="col col-12 d-flex justify-content-center">
+                            <img src="${product.image}" style="object-fit: contain; max-width: 400px;"></img>
+                        </div>
+                        <p class="col text-secondary">${product.category}</p>
+                        <p>${product.description}</p>
+                        <div>
+                            <h4 class="card-text d-md-inline-block">${product.price}kr</h4>
+                            <a href="#" class="btn btn-secondary d-md-inline-block ms-md-3">Buy</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                 </div>
             </div>
         </div>
@@ -30,12 +58,7 @@ fetch ('https://fakestoreapi.com/products') // hämtar returnerar  respons
     document.querySelector('#product-row').appendChild(productCol); 
     })
 })
-function addLinkForMoreInfo(input){
-    let modInput = input.replace(" ","")
-    if(modInput.length > 20){
 
-    }
-}
 
 /*
 Maricas kod
