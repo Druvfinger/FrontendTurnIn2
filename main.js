@@ -8,11 +8,13 @@ fetch ('https://fakestoreapi.com/products') // hämtar returnerar  respons
         let title = product.title;
         let id = product.id;
         const markup = `
-        <div class="col">
-        <div class="card mb-5 border-dark" style="max-width: 300px;">
-            <img src="${product.image}" class="card-img-top p-3"></img>
-            <div class="card-body">
-            <h3 class="card-title">${product.title}</h3>
+    <div class="col">
+        <div class="card border-dark m-2" style="height:80vh; min-height:750px;">
+            <div class="card-body" style ="min-width: fit-content;">
+            <img src="${product.image}" class="card-img-top" style= "width: 100%;
+            height: 35vh; 
+            object-fit: contain;"></img>
+            <h3 class="card-title" style="font-size:large;">${product.title}</h3>
             <p class="card-text text-secondary ">${product.category}</p>
             <p class="card-text">${description.length > 20 ? description.substring(0, 20).concat(
                `<a href = "#" data-bs-toggle="modal" data-bs-target="#${product.id}">...more</a>`) : description}</p>
@@ -53,8 +55,9 @@ fetch ('https://fakestoreapi.com/products') // hämtar returnerar  respons
     </div>
     `
     const productCol = document.createElement('div');
-    productCol.classList.add('col-md-3');
+    productCol.classList.add('col-md-4');
     productCol.innerHTML = markup; // markup är HTML-blocket
     document.querySelector('#product-row').appendChild(productCol); 
     })
 })
+
