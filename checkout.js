@@ -1,4 +1,6 @@
 // Eventlistener for submit button
+
+
 document.getElementById('userForm').addEventListener('submit', purchaseItem);
 
 // Check if all fields are correct then -> 
@@ -15,7 +17,23 @@ function purchaseItem(e) {
   }
 
 
-  document.getElementById('#modalx').id=modal;
+//   document.getElementById('#modalx').id=modal;
+
+// document.getElementById('successModal').modal('show');
+
+
+
+var myModal = new bootstrap.Modal('#confirmation-modal');
+  myModal.show();
+
+
+
+// $('#modal').modal('show');
+
+//   $("#submit-btn").submit(function(e){
+//     $('#modal').modal('show');
+//     return false;
+// });
  
 
   var user = {name: userName, phone: userPhone, email: userEmail, adress: userAddress};
