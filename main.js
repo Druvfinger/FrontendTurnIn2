@@ -26,8 +26,8 @@ fetch ('https://fakestoreapi.com/products') // hämtar returnerar  respons
     `
     const productCol = document.createElement('div');
     productCol.classList.add('col-md-3');
-    productCol.innerHTML = markup;
-    document.querySelector('#product-row').appendChild(productCol);
+    productCol.innerHTML = markup; // markup är HTML-blocket
+    document.querySelector('#product-row').appendChild(productCol); 
     })
 })
 function addLinkForMoreInfo(input){
