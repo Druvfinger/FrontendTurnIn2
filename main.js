@@ -55,7 +55,7 @@ fetch ('https://fakestoreapi.com/products') // hämtar returnerar  respons
     </div>
     `
     const productCol = document.createElement('div');
-    productCol.classList.add('col-md-4');
+    productCol.classList.add('col-md-6');//col-md-4 standard
     productCol.innerHTML = markup; // markup är HTML-blocket
     document.querySelector('#product-row').appendChild(productCol); 
     })
