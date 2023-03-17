@@ -30,12 +30,17 @@ fetch ('https://fakestoreapi.com/products') // hämtar returnerar  respons
     document.querySelector('#product-row').appendChild(productCol); 
     })
 })
+
+
+
+
 function addLinkForMoreInfo(input){
     let modInput = input.replace(" ","")
     if(modInput.length > 20){
 
     }
 }
+
 
 /*
 Maricas kod
