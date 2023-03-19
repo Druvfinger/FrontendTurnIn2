@@ -9,12 +9,14 @@ fetch ('https://fakestoreapi.com/products') // hämtar returnerar  respons
         let id = product.id;
         const markup = `
         <div class="col">
-        <div class="card mb-5 border-dark" style="max-width: 300px;">
-            <img src="${product.image}" class="card-img-top p-3"></img>
+        <div class="card mb-5 border-dark" style="height:80vh;">
             <div class="card-body">
-            <h3 class="card-title">${product.title}</h3>
+            <img src="${product.image}" class="card-img-top" style= "width: 100%;
+            height: 35vh; 
+            object-fit: contain;"></img>
+            <h3>${product.title}</h3>
             <p class="card-text text-secondary ">${product.category}</p>
-            <p class="card-text">${description.length > 20 ? description.substring(0, 20).concat('..more') : description}</p>
+            <p>${description.length > 20 ? description.substring(0, 20).concat('..more') : description}</p>
             <div class="row">
                 <div class="col">
                     <h4 class="card-text d-md-inline-block">${product.price}kr</h4>

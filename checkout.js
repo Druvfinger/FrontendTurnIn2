@@ -1,57 +1,158 @@
-// Eventlistener for submit button
+const form = document.getElementById('form');
+const username = document.getElementById('username');
+const email = document.getElementById('email');
+const telephone = document.getElementById('telephone');
+const street = document.getElementById('street');
+const zipcode = document.getElementById('zipcode');
+const city = document.getElementById('city');
 
+form.addEventListener('submit', e => {
+    e.preventDefault();
+    checkInputs();
+});
 
-document.getElementById('userForm').addEventListener('submit', purchaseItem);
+function checkInputs() {
 
-// Check if all fields are correct then -> 
-function purchaseItem(e) {
+    // Get values from fields
+    const usernameValue = username.value.trim();
+    const emailValue = email.value.trim();
+    const telephoneValue = telephone.value.trim();
+    const streetValue = street.value.trim();
+    const zipcodeValue = zipcode.value.trim();
+    const cityValue = city.value.trim();
 
- // Get form values
- var userName = document.getElementById('userName').value;
- var userPhone = document.getElementById('userPhone').value;
- var userAddress = document.getElementById('userAddress').value;
- var userEmail = document.getElementById('userEmail').value;
+    // For form to show error in all fields -> need to go through all checks everytime
+    let arr = [];
+    arr.push(checkUserName(usernameValue));
+    arr.push(checkEmail(emailValue));
+    arr.push(checkTelephone(telephoneValue));
+    arr.push(checkStreet(streetValue));
+    arr.push(checkZipCode(zipcodeValue));
+    arr.push(checkCity(cityValue));
 
- if(!validateForm(userName, userPhone, userAddress, userEmail)){
-    return false;
-  }
-
-
-//   document.getElementById('#modalx').id=modal;
-
-// document.getElementById('successModal').modal('show');
-
-
-
-var myModal = new bootstrap.Modal('#confirmation-modal');
-  myModal.show();
-
-
-
-// $('#modal').modal('show');
-
-//   $("#submit-btn").submit(function(e){
-//     $('#modal').modal('show');
-//     return false;
-// });
- 
-
-  var user = {name: userName, phone: userPhone, email: userEmail, adress: userAddress};
-
-  alert(user.name);
-
-}
- 
-// Validate Form
-function validateForm(userName, userPhone, userAddress, userEmail){
-    if(isObjEmpty(userName) || isObjEmpty(userPhone) || isObjEmpty(userAddress)|| isObjEmpty(userEmail)){
-      alert('Please fill in the form');
-      return false;
+    if (!arr.includes(false)) {
+        successPurchase();
     }
-    return true;
 }
 
-// Check if field is empty
-function isObjEmpty (obj) {
-    return Object.keys(obj).length === 0;
+function successPurchase() {
+    // Show modal
+    let myModal = new bootstrap.Modal('#confirmation-modal');
+    myModal.show();
+
+    // Set modal text
+    var modalText = document.getElementById("modal-bodyText");
+    modalText.appendChild(document.createTextNode("Order shipped to:"));
+    modalText.appendChild(document.createElement("br"));
+    modalText.appendChild(document.createTextNode(username.value.trim()));
+    modalText.appendChild(document.createElement("br"));
+    modalText.appendChild(document.createTextNode(street.value.trim()));
+}
+
+
+
+// *** Input checks ***
+
+function checkUserName(usernameValue) {
+    if (usernameValue === '') {
+        setErrorFor(username, 'Name cannot be blank');
+        return false;
+    } else if (usernameValue.length < 2) {
+        setErrorFor(username, 'Name must be more than one character');
+        return false;
+    } else if (usernameValue.length > 50) {
+        setErrorFor(username, 'Name cannot be more than 50 characters');
+        return false;
+    } else {
+        setSuccessFor(username);
+        return true;
+    }
+}
+function checkEmail(emailValue) {
+    if (emailValue === '') {
+        setErrorFor(email, 'Email cannot be blank');
+        return false;
+    } else if (emailValue.length > 50) {
+        setErrorFor(username, 'Email cannot be more than 50 characters');
+        return false;
+    } else if (!isEmail(emailValue)) {
+        setErrorFor(email, 'Not a valid email');
+        return false;
+    } else {
+        setSuccessFor(email);
+        return true;
+    }
+}
+function checkTelephone(telephoneValue) {
+    if (telephoneValue === '') {
+        setErrorFor(telephone, 'Telephone cannot be blank');
+        return false;
+    } else if (!checkTelephoneString(telephoneValue)) {
+        setErrorFor(telephone, 'Number can only be 1-9, "-", or "()"');
+        return false;
+    } else {
+        setSuccessFor(telephone);
+        return true;
+    }
+}
+
+function checkTelephoneString(telephoneValue){
+    for (var i=0; i < telephoneValue.length; i++) {
+        if (!((telephoneValue.charAt(i) === "-") || (/^\d$/.test(telephoneValue.charAt(i))) ||
+        (telephoneValue.charAt(i) === "(") || (telephoneValue.charAt(i) === ")"))) {
+            return false;
+        }  
+    } return true;
+}
+
+function checkStreet(streetValue) {
+    if (streetValue === '') {
+        setErrorFor(street, 'Street cannot be blank');
+        return false;
+    } else {
+        setSuccessFor(street);
+        return true;
+    }
+}
+
+function checkZipCode(zipcodeValue){
+    if (zipcodeValue === '') {
+        setErrorFor(zipcode, 'Zipcode cannot be blank');
+        return false;
+    } else if (zipcodeValue.length > 50) {
+        setErrorFor(zipcode, 'City cannot be more than 50 characters');
+        return false;
+    } else {
+        setSuccessFor(zipcode);
+        return true;
+    }
+}
+
+function checkCity(cityValue){
+    if (cityValue === '') {
+        setErrorFor(city, 'City cannot be blank');
+        return false;
+    } else if (cityValue.length > 50) {
+        setErrorFor(city, 'City cannot be more than 50 characters');
+        return false;
+    } else {
+        setSuccessFor(city);
+        return true;
+    }
+}
+
+function setErrorFor(input, message) {
+    const formControl = input.parentElement;
+    const small = formControl.querySelector('small');
+    formControl.className = 'form-control error';
+    small.innerText = message;
+}
+
+function setSuccessFor(input) {
+    const formControl = input.parentElement;
+    formControl.className = 'form-control success';
+}
+
+function isEmail(email) {
+    return /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(email);
 }
