@@ -85,6 +85,23 @@ h3 {
 	right: 10px;
 }
 
+.form-control.success i.fa-check-circle {
+	font-size: large;
+	padding-right: 14px;
+	padding-top: 9px;
+	color: #2ecc71;
+	visibility: visible;
+}
+
+.form-control.error i.fa-exclamation-circle {
+	font-size: large;
+	padding-right: 14px;
+	padding-top: 9px;
+	color: #e74c3c;
+	visibility: visible;
+}
+
+
 .form-control small {
     padding-left: 11px;
 	color: #e74c3c;
@@ -97,6 +114,8 @@ h3 {
 .form-control.error small {
 	visibility: visible;
 }
+
+
 
 #submit-button {
 	background-color: #414041;
@@ -134,3 +153,4 @@ h3 {
 	color: #585757;
 	background-color: #e9e8e8;
 }
+

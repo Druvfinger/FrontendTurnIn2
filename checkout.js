@@ -6,6 +6,8 @@ const street = document.getElementById('street');
 const zipcode = document.getElementById('zipcode');
 const city = document.getElementById('city');
 
+
+
 form.addEventListener('submit', e => {
     e.preventDefault();
     checkInputs();
@@ -39,6 +41,8 @@ function successPurchase() {
     // Show modal
     let myModal = new bootstrap.Modal('#confirmation-modal');
     myModal.show();
+  
+   
 
     // Set modal text
     var modalText = document.getElementById("modal-bodyText");
