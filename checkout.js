@@ -47,6 +47,10 @@ function successPurchase() {
     modalText.appendChild(document.createTextNode(username.value.trim()));
     modalText.appendChild(document.createElement("br"));
     modalText.appendChild(document.createTextNode(street.value.trim()));
+    modalText.appendChild(document.createElement("br"));
+    modalText.appendChild(document.createTextNode(zipcode.value.trim()));
+    modalText.appendChild(document.createElement("br"));
+    modalText.appendChild(document.createTextNode(city.value.trim()));
 }
 
 
