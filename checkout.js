@@ -117,10 +117,10 @@ function checkStreet(streetValue) {
 
 function checkZipCode(zipcodeValue){
     if (zipcodeValue === '') {
-        setErrorFor(zipcode, 'Zipcode cannot be blank');
+        setErrorFor(zipcode, 'Zip Code cannot be blank');
         return false;
-    } else if (zipcodeValue.length > 50) {
-        setErrorFor(zipcode, 'City cannot be more than 50 characters');
+    } else if ( !(/(^[0-9]{3}\s?[0-9]{2}$)/.test(zipcodeValue))) {
+        setErrorFor(zipcode, 'Zip Code must be in format "000 00"');
         return false;
     } else {
         setSuccessFor(zipcode);
