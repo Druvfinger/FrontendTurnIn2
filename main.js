@@ -1,8 +1,8 @@
-fetch ('https://fakestoreapi.com/products') // hämtar returnerar  respons
-.then(res => {  // konvertera response till en promise
+fetch ('https://fakestoreapi.com/products')
+.then(res => { 
     return res.json();
 })
-.then(data => {   // konvertat till array 
+.then(data => {
     data.forEach(product => {
         let description = product.description;
         let title = product.title;
@@ -53,8 +53,8 @@ fetch ('https://fakestoreapi.com/products') // hämtar returnerar  respons
     </div>
     `
     const productCol = document.createElement('div');
-    productCol.classList.add('col-md-4');//col-md-4 standard
-    productCol.innerHTML = markup; // markup är HTML-blocket
+    productCol.classList.add('col-md-4');
+    productCol.innerHTML = markup;
     document.querySelector('#product-row').appendChild(productCol); 
     })
 })
