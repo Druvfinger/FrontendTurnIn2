@@ -96,8 +96,6 @@ const shoppingCart = [];
 
 form.addEventListener('submit', e => {
     e.preventDefault();
-    const objFromStorage = JSON.parse(localStorage.getItem('storedCart'))
-    console.log(objFromStorage);
     checkInputs();
 });
 
@@ -130,13 +128,13 @@ function successPurchase() {
     let myModal = new bootstrap.Modal('#confirmation-modal');
     myModal.show();
   
-    
-    
-
     // Set modal text
     var modalText = document.getElementById("modal-bodyText");
-  
-    modalText.appendChild(document.createTextNode(" shipped to:"));
+    const loadedCart= JSON.parse(localStorage.getItem('storedCart'))
+   
+    modalText.appendChild(document.createTextNode(loadedCart[0].title));
+    modalText.appendChild(document.createElement("br"));
+    modalText.appendChild(document.createTextNode("Shipped to:"));
     modalText.appendChild(document.createElement("br"));
     modalText.appendChild(document.createTextNode(username.value.trim()));
     modalText.appendChild(document.createElement("br"));
