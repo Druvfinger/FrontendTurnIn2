@@ -18,6 +18,11 @@ h3 {
 	margin: 0;
 }
 
+#index-body {
+	background-color: #eceaed;
+
+}
+
 #form-container {
     padding-top: 10px;
 	background-color: #fff;
