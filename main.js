@@ -62,8 +62,6 @@ fetch ('https://fakestoreapi.com/products')
 
 // *** Item Handling ***
 
-
-
 // Async function to wait for fetch
 
 async function getJSON(product) {
@@ -77,7 +75,6 @@ async function getJSON(product) {
 async function addItem(itemId){
     let product = "https://fakestoreapi.com/products/" + itemId; 
     shoppingCart.push(await this.getJSON(product));
-    console.log(shoppingCart[0].title);
     localStorage.setItem("storedCart", JSON.stringify(shoppingCart));
     window.location.href = "checkout.html";
 }
@@ -143,11 +140,7 @@ function successPurchase() {
     modalText.appendChild(document.createTextNode(zipcode.value.trim()));
     modalText.appendChild(document.createElement("br"));
     modalText.appendChild(document.createTextNode(city.value.trim()));
-
-
 }
-
-
 
 
 // *** Input checks ***
