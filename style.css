@@ -191,4 +191,7 @@ h3 {
     flex-direction: column;
     cursor: pointer;
 }
+@media (max-width: 850px) {
+	.side-nav{display: none;}
+}
 
