@@ -41,7 +41,7 @@ fetch ('https://fakestoreapi.com/products')
                         <p>${product.description}</p>
                         <div>
                             <h4 class="card-text d-md-inline-block">${product.price}kr</h4>
-                            <a href="checkout.html" class="btn btn-secondary d-md-inline-block ms-md-3">Confirm Purchase</a>
+                            <a onclick="addItem(${product.id})"  class="btn btn-secondary d-md-inline-block ms-md-3"  >Confirm Purchase</a>
                         </div>
                     </div>
                 </div>
@@ -59,6 +59,30 @@ fetch ('https://fakestoreapi.com/products')
     })
 })
 
+
+// *** Item Handling ***
+
+
+
+// Async function to wait for fetch
+
+async function getJSON(product) {
+    return await fetch(product)
+        .then((response)=>response.json())
+        .then((responseJson)=>{return responseJson});
+}
+
+// Add item to shopping Cart
+
+async function addItem(itemId){
+    let product = "https://fakestoreapi.com/products/" + itemId; 
+    shoppingCart.push(await this.getJSON(product));
+    console.log(shoppingCart[0].title);
+    localStorage.setItem("storedCart", JSON.stringify(shoppingCart));
+    window.location.href = "checkout.html";
+}
+
+
 //Check out code
 
 const form = document.getElementById('form');
@@ -68,14 +92,12 @@ const telephone = document.getElementById('telephone');
 const street = document.getElementById('street');
 const zipcode = document.getElementById('zipcode');
 const city = document.getElementById('city');
-
-
-
-
-
+const shoppingCart = [];
 
 form.addEventListener('submit', e => {
     e.preventDefault();
+    const objFromStorage = JSON.parse(localStorage.getItem('storedCart'))
+    console.log(objFromStorage);
     checkInputs();
 });
 
@@ -108,11 +130,13 @@ function successPurchase() {
     let myModal = new bootstrap.Modal('#confirmation-modal');
     myModal.show();
   
-   
+    
+    
 
     // Set modal text
     var modalText = document.getElementById("modal-bodyText");
-    modalText.appendChild(document.createTextNode("Order shipped to:"));
+  
+    modalText.appendChild(document.createTextNode(" shipped to:"));
     modalText.appendChild(document.createElement("br"));
     modalText.appendChild(document.createTextNode(username.value.trim()));
     modalText.appendChild(document.createElement("br"));
@@ -233,3 +257,5 @@ function setSuccessFor(input) {
 function isEmail(email) {
     return /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(email);
 }
+
+
