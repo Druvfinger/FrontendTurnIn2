@@ -97,6 +97,7 @@ h3 {
 	visibility: visible;
 }
 
+
 .form-control.error i.fa-exclamation-circle {
 	font-size: large;
 	padding-right: 14px;
@@ -157,3 +158,37 @@ h3 {
 	color: #585757;
 	background-color: #e9e8e8;
 }
+
+.side-nav{
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    top: 0;
+    width: 72px;
+    
+}
+.sidebar-link{
+    height: 74px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    cursor: pointer;
+    margin-top: 60px;
+    padding-left: 2px;
+    padding-right: 2px;
+}
+.pic{
+    object-fit: contain;
+    width: 50px;
+}
+.sidebar-link-1{
+    margin-top: 70px;  
+    height: 74px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    cursor: pointer;
+}
+

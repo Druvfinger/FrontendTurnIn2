@@ -9,8 +9,8 @@ fetch ('https://fakestoreapi.com/products') // hämtar returnerar  respons
         let id = product.id;
         const markup = `
     <div class="col">
-        <div class="card border-dark m-2" style="height:80vh;           min-height:750px;">
-            <div class="card-body" style ="min-width: fit-content;">
+        <div class="card border-dark m-2" style="height:80vh; min-height:750px;">
+            <div class="card-body" style ="">
             <img src="${product.image}" class="card-img-top" style= "width: 100%; height: 35vh; object-fit: contain;"></img>
             <h3 class="card-title" style="font-size:large;">${product.title}</h3>
             <p class="card-text text-secondary ">${product.category}</p>
@@ -41,7 +41,7 @@ fetch ('https://fakestoreapi.com/products') // hämtar returnerar  respons
                         <p>${product.description}</p>
                         <div>
                             <h4 class="card-text d-md-inline-block">${product.price}kr</h4>
-                            <a href="checkout.html" class="btn btn-secondary d-md-inline-block ms-md-3">Buy</a>
+                            <a href="checkout.html" class="btn btn-secondary d-md-inline-block ms-md-3">Confirm Purchase</a>
                         </div>
                     </div>
                 </div>
@@ -226,9 +226,4 @@ function setSuccessFor(input) {
 
 function isEmail(email) {
     return /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(email);
-}
-
-//testing close clear function
-function clearForm(){
-    document.getElementById("form").reset();
 }
