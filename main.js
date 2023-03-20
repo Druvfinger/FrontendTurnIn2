@@ -71,6 +71,9 @@ const city = document.getElementById('city');
 
 
 
+
+
+
 form.addEventListener('submit', e => {
     e.preventDefault();
     checkInputs();
@@ -118,7 +121,10 @@ function successPurchase() {
     modalText.appendChild(document.createTextNode(zipcode.value.trim()));
     modalText.appendChild(document.createElement("br"));
     modalText.appendChild(document.createTextNode(city.value.trim()));
+
+
 }
+
 
 
 
