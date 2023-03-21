@@ -19,7 +19,9 @@ h3 {
 
 #index-body {
 	background-color: #eceaed;
-
+}
+#cart-body {
+	background-color: #eceaed;
 }
 
 #form-container {
@@ -208,5 +210,9 @@ h3 {
 }
 @media (max-width: 850px) {
 	.side-nav{display: none;}
+}
+.borders{
+	border: 1px solid black;
+	border-radius: 6px;
 }
 
