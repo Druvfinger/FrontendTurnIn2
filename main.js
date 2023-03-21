@@ -10,7 +10,7 @@ fetch ('https://fakestoreapi.com/products')
         const markup = `
     <div class="col">
         <div class="card border-dark m-2" style="height:80vh; min-height:750px;">
-            <div class="card-body" style ="">
+            <div class="card-body">
             <img src="${product.image}" class="card-img-top" style= "width: 100%; height: 35vh; object-fit: contain;"></img>
             <h3 class="card-title" style="font-size:large;">${product.title}</h3>
             <p class="card-text text-secondary ">${product.category}</p>
