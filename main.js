@@ -5,8 +5,6 @@ fetch ('https://fakestoreapi.com/products')
 .then(data => {
     data.forEach(product => {
         let description = product.description;
-        let title = product.title;
-        let id = product.id;
         const markup = `
     <div class="col">
         <div class="card border-dark m-2" style="height:80vh; min-height:750px;">
@@ -76,7 +74,7 @@ async function addItem(itemId){
     let product = "https://fakestoreapi.com/products/" + itemId; 
     shoppingCart.push(await this.getJSON(product));
     localStorage.setItem("storedCart", JSON.stringify(shoppingCart));
-    window.location.href = "checkout.html";
+    window.location.href = "confirmation.html";
 }
 
 
@@ -247,6 +245,45 @@ function setSuccessFor(input) {
 
 function isEmail(email) {
     return /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(email);
+}
+function displayProduct(){
+    const loadedCart= JSON.parse(localStorage.getItem('storedCart'))
+    loadedCart.forEach(product => {
+        let markup = `
+        <div class="row borders p-2">
+        <div class="col-12">
+            <img src="${product.image}" style="object-fit: contain; height:90px;">
+        </div>
+        <div class="col-12">
+            <h3 class="col d-flex">${product.title}</h3>
+        </div>
+        <div class="col-12 text-secondary">${product.category}</div>
+        <div class="col">
+            <div class="col d-flex">${product.description}</div>
+        </div>
+        <div class="row col-12"></div>
+        <div class="col">  
+            <div class="col">&dollar;Price:</div>
+            <div class="col d-flex" id="price${product.id}">${product.price}</div>
+        </div>    
+        <div class="col">
+            <div class="col d-flex">Rating:</div>
+            <div class="col">${product.rating.rate}</div>
+        </div>
+        <div class="col">
+            <div class="col">Count:</div>
+            <div class="col">${product.rating.count}</div>
+        </div>
+        <div class="col">
+            <a href="checkout.html" class="btn btn-secondary">Confirm Purchase</a>
+        </div>
+    </div>
+        `
+    const productCol = document.createElement('div');
+    productCol.classList.add('col');
+    productCol.innerHTML = markup;
+    document.querySelector('#insertPlace').appendChild(productCol);
+    })
 }
 
 
